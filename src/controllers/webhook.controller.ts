@@ -7,7 +7,7 @@ import { ApiResponse, TweetWebhookRequest, WebhookRegistrationRequest } from "..
 import { join } from "path";
 
 // ChainGPT API URL
-const CHAINGPT_API_URL = "https://webapi.chaingpt.org";
+const CHAINGPT_API_URL = "https://v2.webapi.chaingpt.dev";
 
 /**
  * Fetch connected webhook from ChainGPT
