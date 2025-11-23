@@ -14,18 +14,21 @@ interface TwitterTokens {
 // Get the domain dynamically
 const getDomain = (c: Context): string => {
   const host = c.req.header("host");
-  const protocol = c.req.header("x-forwarded-proto") || "https";
+
+  const isLocalhost = host?.includes("localhost") || host?.includes("127.0.0.1");
+  const protocol = isLocalhost ? "http" : c.req.header("x-forwarded-proto") || "https";
   return `${protocol}://${host}`;
 };
-console.log("getDomain(c),", (c: Context) => getDomain(c));
+
+
 // Configuration – replace with your Twitter app credentials
 const config = {
   clientId: process.env.TWITTER_CLIENT_ID, // Twitter OAuth2 Client ID
   clientSecret: process.env.TWITTER_CLIENT_SECRET, // Twitter OAuth2 Client Secret
-  redirectUri: (c: Context) => "http://localhost:8000/api/login/callback", //https://agenticos-app.onrender.com/api/login/callback", // Must match callback in Twitter app settings
-  // redirectUri: (c: Context) => `${getDomain(c)}/api/login/callback`,
 
-  port: 8000,
+  redirectUri: (c: Context) => `${getDomain(c)}/api/login/callback`, // Must match callback in Twitter app settings
+  port: process.env.PORT || 8000,
+
 };
 
 // Generate PKCE code verifier and challenge
@@ -47,7 +50,7 @@ export const login = async (c: Context) => {
     sameSite: "Lax",
     maxAge: 5 * 60 * 1000, // 5 minutes
   });
-  // console.log("config.redirectUri,",config.redirectUri(c),)
+
   // Redirect to Twitter's OAuth 2.0 authorization endpoint
   const authorizationUrl = `https://twitter.com/i/oauth2/authorize?${querystring.stringify({
     response_type: "code",
@@ -93,9 +96,7 @@ export const callback = async (c: Context) => {
     );
 
     const { access_token, refresh_token } = response.data;
-    console.log("Access and refresh tokens received:", { access_token, refresh_token });
 
-    // Render a password prompt form
     // Return HTML form
     return c.html(`
   <!DOCTYPE html>
@@ -169,22 +170,6 @@ export const callback = async (c: Context) => {
           position: relative;
         }
 
-        .copy-btn {
-          position: absolute;
-          right: 0.5rem;
-          top: 0.5rem;
-          background: var(--primary);
-          color: white;
-          border: none;
-          padding: 0.5rem;
-          border-radius: 4px;
-          cursor: pointer;
-          opacity: 0.9;
-        }
-
-        .copy-btn:hover {
-          opacity: 1;
-        }
 
         .password-section {
           margin-top: 2rem;
@@ -247,7 +232,7 @@ export const callback = async (c: Context) => {
             <span class="token-label">Access Token:</span>
             <div class="token-display">
               <div class="token-value" id="accessTokenValue">${access_token}</div>
-              <button class="copy-btn" onclick="copyToken('accessTokenValue')">Copy</button>
+
             </div>
           </div>
 
@@ -255,7 +240,7 @@ export const callback = async (c: Context) => {
             <span class="token-label">Refresh Token:</span>
             <div class="token-display">
               <div class="token-value" id="refreshTokenValue">${refresh_token}</div>
-              <button class="copy-btn" onclick="copyToken('refreshTokenValue')">Copy</button>
+
             </div>
           </div>
 
@@ -277,18 +262,7 @@ export const callback = async (c: Context) => {
       </footer>
 
       <script>
-        async function copyToken(elementId) {
-          const text = document.getElementById(elementId).innerText;
-          try {
-            await navigator.clipboard.writeText(text);
-            const btn = event.target;
-            btn.innerText = 'Copied!';
-            setTimeout(() => btn.innerText = 'Copy', 2000);
-          } catch (err) {
-            alert('Failed to copy text');
-          }
-        }
-
+main
         async function submitForm(e) {
           e.preventDefault();
           const submitBtn = e.target.querySelector('button[type="submit"]');
@@ -391,7 +365,7 @@ export const callback1 = async (c: Context) => {
     );
 
     const { access_token, refresh_token } = response.data;
-    console.log("Access and refresh tokens received:", { access_token, refresh_token });
+
     // Directly call loadTokens with the context
     const isAlreadyExist = await tokenAlreadyExists();
 
@@ -427,7 +401,4 @@ export const callback1 = async (c: Context) => {
   }
 };
 
-// // Start the server to listen for OAuth requests
-// app.listen(config.port, () => {
-//   console.log(`Token generator listening on port ${config.port}`);
-// });
+

@@ -40,7 +40,9 @@ Each generated tweet consumes 1 ChainGPT credit.
 ### Step 1: Clone and Set Up
 
 ```bash
-git clone https://github.com/nasirfunavry/AgenticOS.git
+
+git clone https://github.com/ChainGPT-org/AgenticOS.git
+
 cd AgenticOS
 
 # Install Bun runtime
@@ -76,7 +78,9 @@ PASSWORD_AUTH=your_secure_password # API Authentication Password - Required for 
 
 ## 🔐 Generate Encryption Keys
 
-[![🔐 Generate New Keys](https://img.shields.io/badge/🔐_Generate_New_Keys-Click_Here-blue?style=for-the-badge)](https://nasirfunavry.github.io/AgenticOS) ↗️
+
+[![🔐 Generate New Keys](https://img.shields.io/badge/🔐_Generate_New_Keys-Click_Here-blue?style=for-the-badge)](https://ChainGPT-org.github.io/AgenticOS) ↗️
+
 
 > Click the button above to generate secure encryption keys for your .env file
 
@@ -118,6 +122,7 @@ To generate your Access Token and Refresh Token, open the following URL in your 
 # Access token Refresh Token Generator
    https://your-domain.com/api/login
 
+ main
 ```
 
     ⚠️ Make sure to replace your-domain.com with your actual deployed domain (to deploy you can refer to "Deployment on Render" section).
@@ -126,7 +131,9 @@ To generate your Access Token and Refresh Token, open the following URL in your 
 
 ### Workflow 1: Scheduled Tweeting (Cron)
 
+ dev
 there are two methods to schedule tweets
+
 
 1. Define your schedule in `data/schedule.json`:
 
@@ -143,9 +150,11 @@ there are two methods to schedule tweets
 }
 ```
 
-2. Edit scheular in dashboard. You can find dashboard at <your_domain>/
 
-   ![Schedule Interface](images/image.png)
+2. Edit schedular in dashboard. You can find dashboard at https://<your_domain>/
+
+   ![Schedule Interface](public/images/image.png)
+ main
 
 Tweets are auto-generated and posted according to this schedule (UTC).
 
@@ -153,27 +162,10 @@ Tweets are auto-generated and posted according to this schedule (UTC).
 
 **Subscribe to Categories:**
 
-- Get available categories:
 
-```bash
-GET https://webapi.chaingpt.org/category-subscription/
-Headers:
-{
-    "api-key": "<your_chainGPT_api_key>"
-}
-```
+There are two methods to subscribe to categories and register Webhook.
 
-- Subscribe to categories:
-  you can subscribe to desired categories using their ids
-
-```bash
-POST https://webapi.chaingpt.org/category-subscription/subscribe
-Headers:
-{
-    "api-key": "<your_chainGPT_api_key>"
-}
-Body: { "categoryIds": [2, 3] }
-```
+1. Using following APIs:
 
 **Register Webhook:**
 
@@ -190,9 +182,49 @@ Body: { "url": "https://{your-domain.com}/api/webhook/" }
 
 AgenticOS will automatically post tweets from ChainGPT news updates.
 
+**Get available categories:**
+ main
+
+```bash
+GET https://webapi.chaingpt.org/category-subscription/
+Headers:
+{
+    "api-key": "<your_chainGPT_api_key>"
+}
+```
+
+
+**Subscribe to categories:**
+You can subscribe to desired categories using their ids
+ main
+
+```bash
+POST https://webapi.chaingpt.org/category-subscription/subscribe
+Headers:
+{
+    "api-key": "<your_chainGPT_api_key>"
+}
+Body: { "categoryIds": [2, 3] }
+```
+
+
+2. Using Dashboard:
+   Goto following page: https://<your_domain>/live-news
+
+**Register Webhook:**
+
+![Schedule Interface](public/images/register-webhook.png)
+
+**Subscribe to categories:**
+
+![Schedule Interface](public/images/subscribe-categories.png)
+
+---
+
 ## 🚀 Deployment on Render
 
-[![Fork on GitHub](https://img.shields.io/github/forks/nasirfunavry/AgenticOS?style=social)](https://github.com/nasirfunavry/AgenticOS/fork)
+[![Fork on GitHub](https://img.shields.io/github/forks/ChainGPT-org/AgenticOS?style=social)](https://github.com/ChainGPT-org/AgenticOS/fork)
+ main
 
 To deploy this application:
 
@@ -210,6 +242,7 @@ For example, if your repository URL is `https://github.com/john-doe/AgenticOS`, 
 https://render.com/deploy?repo=https://github.com/john-doe/AgenticOS
 ```
 
+ dev
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=YOUR_REPO_URL)
 
 Deploy your Twitter automation app instantly on Render without needing to clone the code manually. Here's how it works:
@@ -237,25 +270,28 @@ Want to change the timing or tweet content?
 4. **Auto-Redeploy**: Wait 1–2 minutes — Render will redeploy automatically.
 5. **Reset Access Token**: Call the token API again to reapply your OAuth tokens.
 
+
 ---
 
 ## 📚 Project Structure
 
 ```
+\dev
 twitter-ai-agent/
 ├── data/
 │   └── schedule.json
+\
 ├── src/
 │   ├── config/
 │   ├── controllers/
 │   ├── jobs/
+\
 │   ├── routes/
 │   ├── services/
 │   ├── types/
 │   ├── utils/
 │   └── index.ts
-├── .env.example
-├── package.json
+\
 └── tsconfig.json
 ```
 
@@ -300,6 +336,8 @@ Contributions are welcome! Follow these steps:
 
 ## 📧 Support
 
-Report issues via [GitHub Issues](https://github.com/yourusername/twitter-ai-agent/issues).
+
+Report issues via [GitHub Issues](https://github.com/ChainGPT-org/AgenticOS/issues).
+ main
 
 🚀 **Happy Coding!**
