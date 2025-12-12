@@ -116,6 +116,7 @@ export const registerWebhook = async (c: Context): Promise<Response> => {
  */
 export const tweetWebhook = async (c: Context): Promise<Response> => {
   try {
+    console.log("Webhook received from Hono Context");
     const { tweet } = await c.req.json<TweetWebhookRequest>();
 
     if (!tweet) {
