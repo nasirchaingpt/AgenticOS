@@ -29,3 +29,6 @@ services:
 
       - key: PASSWORD_AUTH
         sync: false
+
+      - key: CHAINGPT_API_URL
+        sync: false

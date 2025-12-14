@@ -4,7 +4,7 @@ import { loadTokens, saveTokens } from "../utils/encryption";
 import { TwitterOAuthResponse, TwitterPostResponse } from "../types";
 
 // ChainGPT API URL
-const CHAINGPT_API_URL = "https://webapi.chaingpt.org";
+const CHAINGPT_API_URL = env.CHAINGPT_API_URL //"https://webapi.chaingpt.dev";
 
 /**
  * Get Twitter access token by using an existing refresh token

@@ -47,7 +47,10 @@ export const login = async (c: Context) => {
     maxAge: 5 * 60 * 1000, // 5 minutes
   });
 
+<<<<<<< HEAD
   // console.log("config.redirectUri,",config.redirectUri(c),)
+=======
+>>>>>>> 84145de5860abf6a57270647dc4c83fbe56b5cee
   // Redirect to Twitter's OAuth 2.0 authorization endpoint
   const authorizationUrl = `https://twitter.com/i/oauth2/authorize?${querystring.stringify({
     response_type: "code",
@@ -93,9 +96,13 @@ export const callback = async (c: Context) => {
     );
 
     const { access_token, refresh_token } = response.data;
+<<<<<<< HEAD
     console.log("Access and refresh tokens received:", { access_token, refresh_token });
 
     // Render a password prompt form
+=======
+
+>>>>>>> 84145de5860abf6a57270647dc4c83fbe56b5cee
     // Return HTML form
     return c.html(`
   <!DOCTYPE html>
@@ -360,7 +367,10 @@ export const callback1 = async (c: Context) => {
     );
 
     const { access_token, refresh_token } = response.data;
+<<<<<<< HEAD
     console.log("Access and refresh tokens received:", { access_token, refresh_token });
+=======
+>>>>>>> 84145de5860abf6a57270647dc4c83fbe56b5cee
     // Directly call loadTokens with the context
     const isAlreadyExist = await tokenAlreadyExists();
 
@@ -396,7 +406,11 @@ export const callback1 = async (c: Context) => {
   }
 };
 
+<<<<<<< HEAD
 // // Start the server to listen for OAuth requests
 // app.listen(config.port, () => {
 //   console.log(`Token generator listening on port ${config.port}`);
 // });
+=======
+
+>>>>>>> 84145de5860abf6a57270647dc4c83fbe56b5cee

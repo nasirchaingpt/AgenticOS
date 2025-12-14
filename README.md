@@ -76,7 +76,11 @@ PASSWORD_AUTH=your_secure_password # API Authentication Password - Required for 
 
 ## 🔐 Generate Encryption Keys
 
+<<<<<<< HEAD
 [![🔐 Generate New Keys](https://img.shields.io/badge/🔐_Generate_New_Keys-Click_Here-blue?style=for-the-badge)](https://nasirfunavry.github.io/AgenticOS) ↗️
+=======
+[![🔐 Generate New Keys](https://img.shields.io/badge/🔐_Generate_New_Keys-Click_Here-blue?style=for-the-badge)](https://ChainGPT-org.github.io/AgenticOS) ↗️
+>>>>>>> 84145de5860abf6a57270647dc4c83fbe56b5cee
 
 > Click the button above to generate secure encryption keys for your .env file
 
@@ -142,7 +146,11 @@ There are two methods to schedule tweets.
 }
 ```
 
+<<<<<<< HEAD
 2. Edit scheular in dashboard. You can find dashboard at https://<your_domain>/
+=======
+2. Edit schedular in dashboard. You can find dashboard at https://<your_domain>/
+>>>>>>> 84145de5860abf6a57270647dc4c83fbe56b5cee
 
    ![Schedule Interface](public/images/image.png)
 
@@ -208,7 +216,11 @@ Body: { "categoryIds": [2, 3] }
 
 ## 🚀 Deployment on Render
 
+<<<<<<< HEAD
 [![Fork on GitHub](https://img.shields.io/github/forks/nasirfunavry/AgenticOS?style=social)](https://github.com/nasirfunavry/AgenticOS/fork)
+=======
+[![Fork on GitHub](https://img.shields.io/github/forks/ChainGPT-org/AgenticOS?style=social)](https://github.com/ChainGPT-org/AgenticOS/fork)
+>>>>>>> 84145de5860abf6a57270647dc4c83fbe56b5cee
 
 To deploy this application:
 

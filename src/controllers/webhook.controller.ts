@@ -7,7 +7,7 @@ import { ApiResponse, TweetWebhookRequest, WebhookRegistrationRequest } from "..
 import { join } from "path";
 
 // ChainGPT API URL
-const CHAINGPT_API_URL = "https://webapi.chaingpt.org";
+const CHAINGPT_API_URL =  env.CHAINGPT_API_URL // "https://webapi.chaingpt.dev";
 
 /**
  * Fetch connected webhook from ChainGPT
@@ -22,7 +22,6 @@ async function fetchConnectedWebhook(): Promise<string | null> {
         "api-key": env.CHAINGPT_API_KEY,
       },
     });
-    console.log("🚀 ~ fetchConnectedWebhook ~ response:", response?.data);
 
     return response?.data?.webhookUrl || null;
   } catch (error) {
@@ -44,7 +43,6 @@ async function fetchCategories(): Promise<any[]> {
         "api-key": env.CHAINGPT_API_KEY,
       },
     });
-    console.log("🚀 ~ fetchCategories ~ response:", response?.data);
 
     const allCategories = response?.data?.allCategories || [];
     const subscribedCategories = response?.data?.subscribedCategories || [];

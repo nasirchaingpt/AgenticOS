@@ -24,6 +24,13 @@ const envSchema = z.object({
 
   // Token Set Password
   PASSWORD_AUTH: z.string().min(1, "Token set password is required"),
+
+  // ChainGPT API URL
+  CHAINGPT_API_URL: z
+    .string()
+    .url("CHAINGPT_API_URL must be a valid URL")
+    .default("https://webapi.chaingpt.dev"),
+
 });
 
 // Parse and validate environment variables
